@@ -1,5 +1,7 @@
 package com.dido.accessingdatamysql;
 
+import java.util.Optional;
+import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,7 +28,7 @@ public class MainController {
     n.setName(name);
     n.setEmail(email);
     userRepository.save(n);
-    return "Saved "+name;
+    return "Saved " + name;
   }
 
   @GetMapping(path = "/all")
@@ -39,7 +41,13 @@ public class MainController {
   @GetMapping(path = "/delete/{id}")
   public @ResponseBody
   String deleteUser(@PathVariable(value = "id") Integer id) {
-    userRepository.deleteById(id);
-    return "delete id: "+id;
+    User user = userRepository.findById(id).orElse(null);
+    if (user != null) {
+      userRepository.deleteById(id);
+      return "deleted User: " + user.getName();
+    } else {
+      return "There is no user with the id: " + id;
+    }
+
   }
 }
