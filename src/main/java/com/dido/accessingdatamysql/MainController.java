@@ -23,7 +23,7 @@ public class MainController {
         this.userRepository = userRepository;
     }
 
-    @LogExecutionTime
+    @LogExecutionTime // Spring AOP annotation
     @GetMapping(path = "/add") // Map ONLY GET Requests
     public @ResponseBody
     String addNewUser(@RequestParam String name
@@ -38,7 +38,7 @@ public class MainController {
         return "Saved " + name;
     }
 
-    @LogExecutionTime
+    @LogExecutionTime // Spring AOP annotation
     @GetMapping(path = "/all")
     public @ResponseBody
     Iterable<User> getAllUsers() {
@@ -46,7 +46,7 @@ public class MainController {
         return userRepository.findAll();
     }
 
-    @LogExecutionTime
+    @LogExecutionTime // Spring AOP annotation
     @GetMapping(path = "/delete/{id}")
     public @ResponseBody
     String deleteUser(@PathVariable(value = "id") Integer id) {
