@@ -1,4 +1,4 @@
-# accessing-data-mysql & Spring AOP annotation
+# Java MySQL & Spring AOP annotation
 > The minimum of:  
 > Spring Framework, Spring Boot, Maven, Tomcat, Java 1.8, Hibernate, JPA, AOP annotation  
 > for Jetty: See -> `https://github.com/didorg/consuming_Web_Services` Easy to configure pom.xml dependency.  
